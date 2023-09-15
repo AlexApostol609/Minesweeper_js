@@ -199,12 +199,6 @@ function isValidTile(row, col) {
 
 }
 
-function checkWin() {
-    if (gameWon) {
-        console.log("")
-    }
-}
-
 
 
 function flagTile(row, col) {
