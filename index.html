@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minesweeper Game</title>
+    <script src="minesweeper.js"></script>
+</head>
+
+<body>
+    <h1>Minesweeper Game</h1>
+
+
+    <div id="diff" style="display: block;">
+        <label for="difficulty">Select Difficulty:</label>
+        <select id="difficulty" name="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="expert">Expert</option>
+        </select>
+        <button onclick="startGame()">Start Game</button>
+
+    </div>
+
+
+    <div id="rowColInputs" style="display: none;">
+        <label for="row">Row:</label>
+        <input type="number" id="row" name="row" min="1" placeholder="Enter row">
+
+        <label for="col">Column:</label>
+        <input type="number" id="col" name="col" min="1" placeholder="Enter column">
+        <br><br>
+        <div><button onclick=pickTile()>Open tile</button>
+            <br>
+            <button onclick=flagTileAction()>Flag tile</button>
+        </div>
+    </div>
+    <div id="resetButton" style="display: none;">
+        <button onclick="resetGame()">Reset Game</button>
+    </div>
+
+
+    <script>
+        function startGame() {
+
+            document.getElementById("diff").style.display = "none";
+            document.getElementById("rowColInputs").style.display = "block";
+
+            const difficulty = document.getElementById("difficulty").value;
+
+            console.log(difficulty);
+            minesweeperGameBootstrapper(difficulty);
+        }
+
+        function pickTile() {
+            const row = document.getElementById("row").value;
+            const col = document.getElementById("col").value;
+
+            handleTile(row, col);
+        }
+
+        function flagTileAction() {
+            const row = document.getElementById("row").value;
+            const col = document.getElementById("col").value;
+
+            flagTile(row, col);
+        }
+
+        function resetGame() {
+            document.getElementById("row").value = "";
+            document.getElementById("col").value = "";
+
+            gameOver = false;
+            openedSquares = [];
+            flaggedSquares = [];
+
+            document.getElementById("resetButton").style.display = "none";
+
+            document.getElementById("diff").style.display = "block";
+            document.getElementById("rowColInputs").style.display = "none";
+
+            console.log("You started a new game")
+        }
+
+
+    </script>
+</body>
+
+</html>
